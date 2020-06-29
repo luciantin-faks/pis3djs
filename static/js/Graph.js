@@ -30,7 +30,9 @@ export async function GraphPopulate(text, path, group, onClickFun){
         .append('text')
             .attr('x', d => d['coord'][0])
             .attr('y', d => d['coord'][1])
-            .attr('dy', '0.33em')
+            .attr('width', 20)
+            .attr('height', 20)
+            .attr('font-size', '10px')
             .text(d => d['data'])
             .attr('fill','red')
             .style("text-anchor", "middle");
