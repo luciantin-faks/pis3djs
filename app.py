@@ -1,6 +1,6 @@
 import json
 import time
-from flask import Flask, Response, render_template
+from flask import Flask, Response, render_template, after_this_request
 
 
 app = Flask(__name__)
@@ -10,22 +10,33 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/pis')
-def chart_data():
-    def generate_random_data():
-        while True:
-            json_data = json.dumps({'PIS':loadJSON()['PIS']})
-            yield f"data:{json_data}\n\n"
-            time.sleep(1)
+@app.route('/pis/<id>')
+def pisData(id):
+    @after_this_request
+    def add_header(response):
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    data = loadJSON()  # print(loadJSON()['IPS'])    
+    if id in data:
+        return json.dumps({id:data[id]})
+    else:
+        return "404"
 
-    return Response(generate_random_data(), mimetype='text/event-stream')
-
-
-
-
+@app.route('/pis/moduli/<id>')
+def pisModuliData(id):
+    @after_this_request
+    def add_header(response):
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    data = loadJSON()['MODULI']
+    if id in data:
+        return json.dumps(data['id'])
+    else:
+        return "404"
 
 
 def loadJSON():
     with open('PISDATA.json', 'r') as dat:
         data=dat.read()
     return json.loads(data)
+
