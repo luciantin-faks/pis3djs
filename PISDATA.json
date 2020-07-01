@@ -3,7 +3,7 @@
         "Analiza i planiranje poslovanja",
         "Nabava i ulazna logistika",
         "Proizvodnja",
-        "Prodaja i ulazna logistika",
+        "Prodaja i izlazna logistika",
         "Racunovodstvo i upravljanje financijama poduzeca",
         "Upravljanje ljudskim resursima",
         "Upravljanje trajnom poslovnom imovinom"
@@ -26,7 +26,7 @@
             "Planiranje i priprema proiyvodnje",
             "Upravljanje kvalitetom i razvojem proizvoda"
         ],
-        "Prodaja i ulazna logistika": [
+        "Prodaja i izlazna logistika": [
             "Upravljanje narudzbama u prodaji",
             "Upravljanje izlaznom logistikom i transportom",
             "Potpora postprodajnim uslugama",

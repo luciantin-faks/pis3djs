@@ -1,4 +1,4 @@
-
+// NE RADI KAKO TREBA
 
 
 export function TextElement(d,i){
@@ -6,7 +6,7 @@ export function TextElement(d,i){
         .select(this)
         .append('foreignObject')
         .attr('class','foreignObjectWrapper')
-        .attr('width', '0')
+        .attr('width', '100')
         .attr('height', '100')
         .style('display','inline-block')
         .style('margin','0')
@@ -20,15 +20,18 @@ export function TextElement(d,i){
             .style('margin','0')
             .style('padding','0')
             // .style('background-color','green')
-            .style('font-size','0.5em')
-            .html(d['data'])
+            .style('font-size','10px')
+            .html(d['data']+'<br>'+' A')
             .attr('color','red')    
 
     let offset =  d3.select(this).select('foreignObject').select('p')['_groups'][0][0].getBoundingClientRect();
     // console.log(offset) // malo ruzno izgleda ali radi
     // console.log(d3.select(this).select('.foreignObjectWrapper').enter().getBBox()) //ne radi   
-    obj.attr('transform',`translate(0,0)`);
-    obj.attr('width','50')
+    // obj.attr('transform',`translate(0,0)`);
+    obj.attr('transform',`translate(${-offset['width']/2},${-offset['height']/2})`);
+    // obj.attr('width','50')
+    obj.attr('width',offset['width'])
+    obj.attr('height',offset['height'])
 }
 
 // export function ImageElement(url,group){
