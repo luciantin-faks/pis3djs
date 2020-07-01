@@ -1,8 +1,8 @@
 import { getIPSdata } from '/static/js/dataRequest.js'
 import { GraphPopulate, SplitArc } from '/static/js/Graph.js'
 import { } from "/static/js/TextToContainer.js"
-
-
+import { TextElement } from "/static/js/SVGforeign.js"
+import { responsivefy } from "/static/js/responsify.js"
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 //                D3  settings & vars               \\
@@ -18,30 +18,16 @@ let chart = d3.select('#chart');
 let svg = chart
     .append('svg')
     .attr('width',width)
-    .attr('height',height);
+    .attr('height',height)
+    .attr('viewBox','0 0 500 500')
+    .attr('preserveAspectRatio','xMidYMid meet')
+    // .call(responsivefy); //da bude responzivan
+    // viewBox="0 0 500 500"
+    // preserveAspectRatio="xMidYMid meet"
 
 //grupe
 let ipsG = svg.append('g')
-    .attr('transform',`translate(${height/2-50},${width/2-30})`);
-
-svg.append('foreignObject')
-    .attr('width', '100%')
-    .attr('height', '100%')
-    .attr('x', 0) 
-   .append('xhtml:div').style('height','100%').style('width','100%')
-  .append('xhtml:object')
-  .attr('height','100%').attr('width','100%')
-  .attr('type','image/svg+xml')
-  .attr('data','https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Architectural_column_plinth_Gibberd_Garden_Essex_England_03.JPG/800px-Architectural_column_plinth_Gibberd_Garden_Essex_England_03.JPG')
-  .append('img').attr('alt','notloaded');
-  svg.append('foreignObject')
-    .attr('width', '100%')
-    .attr('height', '100%')
-    .attr('x', 0) 
-   .append('xhtml:p').style('height','100%').style('width','100%')
-  .attr('height','100%').attr('width','100%')
-  .html('TESHINSFSDF dalwn fjragnkj g ah bg hb sbfh <hjfb <jhfbjeh< bfhj<se fjhb <efbe<wb gwbuig buibgk sbgbsk jj fsdn fsdkj fkjdsfjk sdjkbfk<bs kjbkgb hjrbz grhjzb' )
-//svg.append('rect')
+    // .attr('transform',`translate(${height/2-50},${width/2-30})`);
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 //                     MAIN                         \\
