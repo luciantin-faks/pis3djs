@@ -1,6 +1,6 @@
 
 //https://brendansudol.com/writing/responsive-d3
-export function responsivefy(svg) {
+export function responsify(svg) {
     var container = d3.select(svg.node().parentNode),
         width = parseInt(svg.style("width")),
         height = parseInt(svg.style("height")),

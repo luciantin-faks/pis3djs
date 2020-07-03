@@ -1,138 +1,95 @@
 import { getIPSdata } from '/static/js/dataRequest.js'
 import { GraphPopulate, SplitArc } from '/static/js/Graph.js'
-import { } from "/static/js/TextToContainer.js"
-import { TextElement } from "/static/js/SVGforeign.js"
-import { responsivefy } from "/static/js/responsify.js"
-
+import { responsify } from '/static/js/responsify.js'
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 //                D3  settings & vars               \\
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 
 const CIRCLE_SIZE = [ 100,200,300];
 
-let margin = {top: 10, right: 40, bottom: 30, left: 30},
-width  = 500 - margin.left - margin.right,
-height = 500 - margin.top - margin.bottom;
+// let margin = {top: 10, right: 40, bottom: 30, left: 30},
+// width  = 500 - margin.left - margin.right,
+// height = 500 - margin.top - margin.bottom;
+
+// let width = window.screen.width,height =window.screen.height;
+let width = window.innerWidth,
+height = window.innerHeight;
 
 let chart = d3.select('#chart');
-let svg = chart
+let svg = d3.select('body')
     .append('svg')
     .attr('width',width)
     .attr('height',height)
-    .attr('viewBox','0 0 500 500')
+    // .attr('viewBox','0 0 500 500')
     .attr('preserveAspectRatio','xMidYMid meet')
-    // .call(responsivefy); //da bude responzivan
+    .call(responsify); //da bude responzivan
+
+
     // viewBox="0 0 500 500"
     // preserveAspectRatio="xMidYMid meet"
 
 //grupe
 let ipsG = svg.append('g')
-    // .attr('transform',`translate(${height/2-50},${width/2-30})`);
-
+    .attr('transform',`translate(${width/2},${height/2})`);
+let modsG = svg.append('g')
+    .attr('transform',`translate(${width/2},${height/2})`);
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 //                     MAIN                         \\
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
+
+let IPS_list;
+let MODULI_list;
+
 main()
+async function main(){
 
-function main(){
-
-    let IPS_list = getIPSdata("IPS")
-        .then(d => { 
-            return GraphPopulate(
-                        d['IPS'],
-                        SplitArc(d['IPS'].length,100,100).map(el => el.centroid()),
-                        ipsG,
-                        TstOnClick)})
-
-    // const IPS_MODULI_list = getIPSdata("MODULI")
-    //     .then(d => { return FormatIPSdata(d)})
-    //     .catch(er => console.log('ERROR : CANT GET DATA'))
+    let IPS_data = await getIPSdata("IPS");
+    IPS_list = 
+        GraphPopulate(
+            IPS_data['IPS'],
+            SplitArc(IPS_data['IPS'].length,200,210).map(el => el.centroid()),
+            ipsG,
+            TstOnClick
+        )
+    
+    let MODULI_data = await getIPSdata("MODULI");
+    MODULI_list = 
+        GraphPopulate(
+            MODULI_data['MODULI']['Prodaja i izlazna logistika'],
+            SplitArc(MODULI_data['MODULI']['Prodaja i izlazna logistika'].length,100,110).map(el => el.centroid()),
+            modsG,
+            TstOnClick2
+    )
 }
 
-function TstOnClick(d,i){
-    console.log(d,i)
+function TstOnClick(data,i){
+    console.log(IPS_list.selectAll('*'))
+    // IPS_list.selectAll('*').filter(d=>d!=data).attr('fill','blue')
+    //     .transition()
+    //         .attr('x',0)
+    IPS_list.filter(d=>d!=data)
+        .transition()
+            .attr("transform", `translate(${data['coord'][0]},${data['coord'][1]})scale(0)`)
+            // .attr('x',)
+            // .attr('y',)
+            .duration(1000);
+    
+}
+
+function TstOnClick2(data,i){
+    console.log(MODULI_list.selectAll('*'))
+    // IPS_list.selectAll('*').filter(d=>d!=data).attr('fill','blue')
+    //     .transition()
+    //         .attr('x',0)
+    MODULI_list.filter(d=>d!=data)
+        .transition()
+            .attr("transform", `translate(${data['coord'][0]},${data['coord'][1]})scale(0)`)
+            // .attr('x',)
+            // .attr('y',)
+            .duration(1000);
+    
 }
 
 
 
 
-
-
-
-
-
-// let dat = [1,2,3,4,5]
-
-
-// let textEl = svg.append('g');
-
-// textEl.selectAll('text').data(dat)
-//     .enter()
-//     .append('text')
-//         .attr("x", (d,i) => 50*i)
-//         .attr("y", (d,i) => 100*i)
-//         .attr("text-anchor", "middle")
-//         .attr("font-family", "sans-serif")
-//         .text("Nabava i izlazna logistika")
-//         .each(function() {
-//             let text = d3.select(this),
-//               words = text.text().split(/\s+/).reverse(),
-//               word,
-//               line = [],
-//               lineNumber = 0,
-//               lineHeight = 1.1, // ems
-//               x = text.attr("x"),
-//               y = text.attr("y"),
-//               dy = 1.1,
-//               tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
-//             while (word = words.pop()) {
-//               line.push(word);
-//               tspan.text(line.join(" "));
-//               if (tspan.node().getComputedTextLength() > 100) {
-//                 line.pop();
-//                 tspan.text(line.join(" "));
-//                 line = [word];
-//                 tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-//               }
-//             }
-//         });
-
-
-
-// textEl.append("text")
-//   .attr("x", 100)
-//   .attr("y", 200)
-//   .attr("text-anchor", "middle")
-//   .attr("font-family", "sans-serif")
-//   .text("Nabava i izlazna logistika")
-//   .call(wrap, 100);
-
-// txtHeight = parseInt(textEl.select('text').node().getBoundingClientRect().txtHeight);
-
-// textEl.select("text").attr('transform', 'translate(0, ' + (-txtHeight / 2) + ')');
-
-function wrap(text, width) {
-    console.log(text)
-//   text.each(function() {
-//     let text = d3.select(this),
-//       words = text.text().split(/\s+/).reverse(),
-//       word,
-//       line = [],
-//       lineNumber = 0,
-//       lineHeight = 1.1, // ems
-//       x = text.attr("x"),
-//       y = text.attr("y"),
-//       dy = 1.1,
-//       tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
-//     while (word = words.pop()) {
-//       line.push(word);
-//       tspan.text(line.join(" "));
-//       if (tspan.node().getComputedTextLength() > width) {
-//         line.pop();
-//         tspan.text(line.join(" "));
-//         line = [word];
-//         tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-//       }
-//     }
-//   });
-}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    </head>
+    <body>
+        <svg height='500' width='600'>
+
+        </svg>
+
+
+
+        <script>
+            // import { select, range} from d3;
+
+            const svg = d3.select('svg');
+
+            const width = +svg.attr('width');
+            const height = +svg.attr('height');
+
+            const colorScale = d3.scaleOrdinal()
+                .domain(['apple','lemon'])
+                .range(['red','yellow']);
+            
+            const radiusScale = d3.scaleOrdinal()
+                .domain(['apple','lemon'])
+                .range([50,30]);
+
+            const fruitBowl = (selection, { fruits }) => {        
+                const circles =   selection.selectAll('circle').data(fruits,d=> d.id);
+                    
+                circles.enter().append('circle')
+                    .attr('cy',height/2)
+                    .attr('r',0)
+                    .merge(circles)
+                        .attr('fill', d => colorScale(d.type))
+                        .transition()
+                            .duration(1000)
+                            .attr('cx',(d,i)=> i*120+60)
+                            .attr('r',d => radiusScale(d.type));
+
+                circles.exit()
+                    .transition()
+                        .duration(1000)
+                        .attr('r',0)
+                    .remove();
+            };
+            const render = ()=>{
+                fruitBowl(svg, { fruits});
+            }
+
+            const makeFruit = type => ({type,id:Math.random()});
+            let fruits = d3.range(5)
+                .map(() => makeFruit('apple'));         
+
+            render(svg,{fruits})
+
+            setTimeout(()=>{
+                fruits.pop();
+                render(svg,{fruits})
+            },1000)
+
+            setTimeout(()=>{
+                fruits[2].type='lemon'
+                render(svg,{fruits})
+            },2000)
+
+            setTimeout(()=>{
+                fruits = fruits.filter((d,i)=>{ return i!=1;});
+                render(svg,{fruits})
+            },3000)
+
+            // setInterval(()=>{
+            //     fruits.pop();
+            //     render(svg,{fruits})
+            // },1000);
+            
+
+
+        </script>
+    </body>
+</html>
