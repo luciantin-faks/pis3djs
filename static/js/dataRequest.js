@@ -8,6 +8,7 @@ export async function getIPSdata(url_add){
     return json;
 }
 
+
 // const IPS_list = fetch(URL+"IPS").then(data=>{console.log(data.json()); return data.json()}); 
 // const IPS_MODULI_list = fetch(URL+"MODULI").then(data=>{console.log(data.json()); return data.json()});
 

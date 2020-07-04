@@ -1,5 +1,5 @@
 import { getIPSdata } from '/static/js/dataRequest.js'
-import { GraphPopulate, SplitArc } from '/static/js/Graph.js'
+import { Graph, SplitArc, GraphDataFormat, SplitLineX, SplitLineY } from '/static/js/Graph.js'
 import { responsify } from '/static/js/responsify.js'
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 //                D3  settings & vars               \\
@@ -25,71 +25,69 @@ let svg = d3.select('body')
     .call(responsify); //da bude responzivan
 
 
-    // viewBox="0 0 500 500"
-    // preserveAspectRatio="xMidYMid meet"
-
-//grupe
-let ipsG = svg.append('g')
-    .attr('transform',`translate(${width/2},${height/2})`);
-let modsG = svg.append('g')
-    .attr('transform',`translate(${width/2},${height/2})`);
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 //                     MAIN                         \\
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 
-let IPS_list;
-let MODULI_list;
-
 main()
 async function main(){
 
-    let IPS_data = await getIPSdata("IPS");
-    IPS_list = 
-        GraphPopulate(
-            IPS_data['IPS'],
-            SplitArc(IPS_data['IPS'].length,200,210).map(el => el.centroid()),
-            ipsG,
-            TstOnClick
-        )
+    //podaci za prvi red
+    let IPS_data = (await getIPSdata("IPS"))['IPS'];
+    let MODULI_data = (await getIPSdata("MODULI"))['MODULI']['Prodaja i izlazna logistika'];
+    //grupe
+    let ipsG = svg.append('g')
+    let modsG = svg.append('g')
+    //grafovi
+    let IPSgraf;
+    let MODULIgraf;
+
+    console.log(IPS_data)
+  
+    MODULIgraf = (new Graph(modsG,width,height))
+        .SetContainerStyle(GraphStyleRectLinY)
+        .SetXoff(-200)
+        .Populate(MODULI_data);
+
+    IPSgraf = (new Graph(ipsG,width,height))
+        .SetContainerStyle(GraphStyleRectLinY)
+        .SetXoff(-400)
+        .SetDataSource(ModuliDataSource)
+        .SetupSubGraph(MODULIgraf)
+        .Populate(IPS_data); 
+
     
+    // setTimeout(()=>{IPS_list.clear()},1000)
+}
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++\\
+//                     Style                        \\
+//++++++++++++++++++++++++++++++++++++++++++++++++++\\
+
+const GraphStyleRectLinY ={ // C-container , P-path
+    Ctype : 'rect',
+    Cfill : 'white',
+    Cstroke : 'black',
+    Cwidth : 105,
+    Cheight : 45,
+
+    Ptype : 'linY',
+    Plen : 500,
+};
+
+const GraphStyleCircArc ={
+    Ctype : 'circle',
+    Cfill : 'none',
+    Cstroke : 'green',
+    Cr : 50,
+
+    Ptype : 'Arc',
+    Prad : 200,
+};
+
+
+async function ModuliDataSource(IPSid){
     let MODULI_data = await getIPSdata("MODULI");
-    MODULI_list = 
-        GraphPopulate(
-            MODULI_data['MODULI']['Prodaja i izlazna logistika'],
-            SplitArc(MODULI_data['MODULI']['Prodaja i izlazna logistika'].length,100,110).map(el => el.centroid()),
-            modsG,
-            TstOnClick2
-    )
+    console.log(MODULI_data)
+    return MODULI_data['MODULI'][IPSid];
 }
-
-function TstOnClick(data,i){
-    console.log(IPS_list.selectAll('*'))
-    // IPS_list.selectAll('*').filter(d=>d!=data).attr('fill','blue')
-    //     .transition()
-    //         .attr('x',0)
-    IPS_list.filter(d=>d!=data)
-        .transition()
-            .attr("transform", `translate(${data['coord'][0]},${data['coord'][1]})scale(0)`)
-            // .attr('x',)
-            // .attr('y',)
-            .duration(1000);
-    
-}
-
-function TstOnClick2(data,i){
-    console.log(MODULI_list.selectAll('*'))
-    // IPS_list.selectAll('*').filter(d=>d!=data).attr('fill','blue')
-    //     .transition()
-    //         .attr('x',0)
-    MODULI_list.filter(d=>d!=data)
-        .transition()
-            .attr("transform", `translate(${data['coord'][0]},${data['coord'][1]})scale(0)`)
-            // .attr('x',)
-            // .attr('y',)
-            .duration(1000);
-    
-}
-
-
-
-
