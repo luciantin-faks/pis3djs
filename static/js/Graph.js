@@ -21,6 +21,7 @@ export class Graph{
         this.screenHeight = screenHeight;
         this.offX = 0;
         this.offY = 0;
+        this.hasSubGraf = false;
     }
 
     SetContainerStyle(style){ this.style = style; return this;  }// container && path
@@ -78,13 +79,15 @@ export class Graph{
 
     // setData(data){ this.data = data; return this;}
 
-    SetupSubGraph(sub){ this.subGraph = sub; return this; }
+    SetupSubGraph(sub){this.hasSubGraf=true; this.subGraph = sub;  return this; }
 
     async PopulateSubGraph(withDataID){
         console.log(withDataID);
         let data = await this.DataSourceFun(withDataID);
         this.subGraph.Populate(data);
     }
+
+    ClearSubGraph(){ this.subGraph.Clear(); return this;}
 
     // DataSourceFunction for given textId (just text) return array of text for subgraph 
     SetDataSource(dsFun){ this.DataSourceFun = dsFun; return this;}
@@ -180,7 +183,7 @@ function BindGraphClickEvent(graph){
                     .attr("transform",`translate(${data['coord'][0]},${data['coord'][1]})scale(0)`)
                     .duration(500);  
 
-            graph.PopulateSubGraph(data['data']);
+            if(graph.hasSubGraf)graph.PopulateSubGraph(data['data']);
 
             parentG.attr('isClicked','');
         }
@@ -189,6 +192,10 @@ function BindGraphClickEvent(graph){
                 .transition()
                     .attr("transform",d=> `translate(${d['coord'][0]},${d['coord'][1]})scale(1)`)
                     .duration(500);  
+
+            if(graph.hasSubGraf)graph.ClearSubGraph();
+
+
             parentG.attr('isClicked',null);
         }
     }
