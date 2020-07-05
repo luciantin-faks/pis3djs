@@ -12,16 +12,17 @@ const CIRCLE_SIZE = [ 100,200,300];
 // height = 500 - margin.top - margin.bottom;
 
 // let width = window.screen.width,height =window.screen.height;
-let width = window.innerWidth,
+let width = window.innerWidth/2,
 height = window.innerHeight;
 
-let chart = d3.select('#chart');
-let svg = d3.select('body')
+// let chart = d3.select('#chart');
+let svg = d3.select('.graf')
     .append('svg')
     .attr('width',width)
     .attr('height',height)
-    // .attr('viewBox','0 0 500 500')
-    .attr('preserveAspectRatio','xMidYMid meet')
+    // .attr('viewBox',`0 0 ${200} ${height-200}`)
+    .attr('viewBox',`0 0 400 400`)
+    // .attr('preserveAspectRatio','xMidYMid meet')
     .call(responsify); //da bude responzivan
 
 
@@ -42,16 +43,16 @@ async function main(){
     let IPSgraf;
     let MODULIgraf;
 
-    console.log(IPS_data)
+    // console.log(IPS_data)
   
     MODULIgraf = (new Graph(modsG,width,height))
         .SetContainerStyle(GraphStyleRectLinY)
-        .SetXoff(-200)
+        .SetXoff(-width/2+350)
         .Populate(MODULI_data);
 
     IPSgraf = (new Graph(ipsG,width,height))
         .SetContainerStyle(GraphStyleRectLinY)
-        .SetXoff(-400)
+        .SetXoff(-width/2+150)
         .SetDataSource(ModuliDataSource)
         .SetupSubGraph(MODULIgraf)
         .Populate(IPS_data); 
@@ -68,11 +69,13 @@ const GraphStyleRectLinY ={ // C-container , P-path
     Ctype : 'rect',
     Cfill : 'white',
     Cstroke : 'black',
-    Cwidth : 105,
-    Cheight : 45,
+    Cwidth : 155,
+    Cheight : 70,
 
     Ptype : 'linY',
-    Plen : 500,
+    Plen : height - height*0.1,
+
+    fontSize : ""
 };
 
 const GraphStyleCircArc ={
@@ -83,6 +86,7 @@ const GraphStyleCircArc ={
 
     Ptype : 'Arc',
     Prad : 200,
+    fontSize : "1em"
 };
 
 

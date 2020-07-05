@@ -27,7 +27,7 @@ export class Graph{
     SetContainerStyle(style){ this.style = style; return this;  }// container && path
 
     Populate(text){   //vraca selekciju svih podgrupa koje imaju element     
-        console.log(text);
+        // console.log(text);
         //init
         this.Clear();
         this.textData = text;
@@ -67,9 +67,9 @@ export class Graph{
             .attr("y",  0)
             .attr("text-anchor", "middle")
             .attr("font-family", "sans-serif")
-            .style("font-size", "10px")
+            .style("font-size", this.style.fontSize)
             .text(d=>d['data'])
-            .each(TextToContainer(100,1));   
+            .each(TextToContainer(this.style.Cwidth-5,1));   
     
         this.TranslateGraphH();
         return this;    
@@ -98,7 +98,7 @@ export class Graph{
         else if( this.style.Ptype == 'linX') path = SplitLineX(this.textData.length,this.style.Plen);
         else if( this.style.Ptype == 'linY') path = SplitLineY(this.textData.length,this.style.Plen);
     
-        console.log(this.style.Ptype)
+        // console.log(this.style.Ptype)
         this.data = GraphDataFormat(   
             this.textData,
             path
@@ -157,7 +157,7 @@ export function SplitLineX(n,len){
     let arr = Array.from(Array(n).keys());
     const step = len/n;
     arr = arr.map((el,i)=>{ return [ i*step , 0]; });
-    console.log(arr)
+    // console.log(arr)
     return arr;
 }
 
@@ -176,29 +176,52 @@ export function SplitLineY(n,len){
 function BindGraphClickEvent(graph){
     return function GraphClick(data,i){
         const parentG = d3.select(this.parentNode);  
-        let isClicked = ! IsClicked(parentG);
-        if(isClicked){ 
-            parentG.selectAll('g').filter(d=>d!=data)
+        let isClicked = IsClicked(parentG); //dali je vec kliknut
+        let LastNodeClickedID = parentG.attr('NodeClickedID');
+
+        if(isClicked && LastNodeClickedID == data['data']) { //ako je opet klkunt isti
+            parentG.selectAll('g')
                 .transition()
-                    .attr("transform",`translate(${data['coord'][0]},${data['coord'][1]})scale(0)`)
+                    // .attr("transform",d=> `translate(${d['coord'][0]},${d['coord'][1]})scale(1)`)
+                    .style("opacity", 1)
+                    .duration(500);  
+
+            if(graph.hasSubGraf)graph.ClearSubGraph();
+
+            parentG.attr('isClicked',null);
+            console.log('vec klikunt isti')
+        }
+        else if(isClicked && LastNodeClickedID != data['data'] ){ //ako ClickID nije jednak a kliknulo se
+                parentG.selectAll('g')
+                    .transition()
+                        // .attr("transform",d=> `translate(${d['coord'][0]},${d['coord'][1]})scale(1)`)
+                        .style("opacity", 1)
+                        // .duration(500);
+                parentG.selectAll('g').filter(d=>d!=data)
+                    .transition()
+                        // .attr("transform",`translate(${data['coord'][0]},${data['coord'][1]})scale(0)`)
+                        .style("opacity", 0.3)
+                        .duration(500);  
+
+            if(graph.hasSubGraf)graph.PopulateSubGraph(data['data']);
+
+            parentG.attr('isClicked','');
+            console.log('vec klikunt novi')
+        }
+        else if(!isClicked){
+            parentG.selectAll('g')
+                .transition().filter(d=>d!=data)
+                    // .attr("transform",d=> `translate(${d['coord'][0]},${d['coord'][1]})scale(1)`)
+                    .style("opacity", 0.3)
                     .duration(500);  
 
             if(graph.hasSubGraf)graph.PopulateSubGraph(data['data']);
 
             parentG.attr('isClicked','');
+            console.log('klikunt')
         }
-        else {
-            parentG.selectAll('g')
-                .transition()
-                    .attr("transform",d=> `translate(${d['coord'][0]},${d['coord'][1]})scale(1)`)
-                    .duration(500);  
-
-            if(graph.hasSubGraf)graph.ClearSubGraph();
-
-
-            parentG.attr('isClicked',null);
-        }
-    }
+        parentG.attr('NodeClickedID',data['data']);
+    }    
 }
 
 function IsClicked(node){

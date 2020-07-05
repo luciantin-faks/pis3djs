@@ -16,13 +16,29 @@
                 -moz-box-sizing: border-box;
                 box-sizing: border-box;
             } 
-            svg {
-                width: 100%;
+            .graf {
+                flex-grow: 1;
+                width: 50%;
                 height: 99%; 
+            }
+            .content {
+                flex-grow: 1;
+                width: 50%;
+                height: 99%; 
+            }
+            #view{
+                display: flex;
+                flex-direction: row;
             }
         </style>
     </head> 
     <body>
+        <div id="view">
+            <div class="graf"></div>
+            <div class="content">
+                <p style="font-size: 50px;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam quis placeat amet unde accusamus, sit vitae. Obcaecati quasi praesentium inventore nobis debitis? Quos accusamus voluptatum sint molestias laboriosam impedit nesciunt.</p>
+            </div>
+        </div>
         <!-- <button id="butt_rand"></button> -->
         <script src="/static/js/dataRequest.js"  type="module"></script>
         <script src="/static/js/responsify.js"  type="module"></script>

@@ -11,15 +11,26 @@ IPS = [
 ]
 
 MODULI = {
-    IPS[0] : [ 'Stratesko Planiranje Poslovanja', 'Analitika i planiranje rada zaposlenika', 'Operativna analitika poslovanja', 'Financijska analitika i planiranje' ],
+    IPS[0] : [ 'Strateško Planiranje Poslovanja', 'Analitika i planiranje rada zaposlenika', 'Operativna analitika poslovanja', 'Financijska analitika i planiranje' ],
     IPS[1] : [ 'Priprema nabave i naloga za nabavu', 'Suradnja s dobavljacima', 'Upravljanje zalihama i skladisnim poslovanjem', 'Ulazna logistika', ],
     IPS[2] : [ 'Upravljanje Proizvodnjom', 'Planiranje i priprema proiyvodnje', 'Upravljanje kvalitetom i razvojem proizvoda', ],
     IPS[3] : [ 'Upravljanje narudzbama u prodaji', 'Upravljanje izlaznom logistikom i transportom', 'Potpora postprodajnim uslugama', 'Pruzanje strucnih savjeta i usluga', 'Poticanje na kupnju i sofisticirani oblici prodaje' ],
-    IPS[4] : [ 'Modul glavne knjige', {'Moduli analitickog knjigovodstva i ostalih poslovnih knjiga':['Racunovodstveno pracenje dugotrajne imovine','Obracun placa djelatnika','Racunovodstveno pracenje zaliha sirovina i materijala','Racunovodstveno pracenje proizvodnje i zaliha gotovih proizvoda', 'Racunovodstveno pracenje zaliha trgovacke robe','Saldokonti kupaca i dobavljaca']} ],
+    IPS[4] : [ 'Modul glavne knjige', 'Moduli analitickog knjigovodstva i ostalih poslovnih knjiga' ],
     IPS[5] : [ 'Upravljanje talentima i razvoj ljudskih potencijala', 'Upravljanje radnim i poslovnim procesima ljudi' ],
     IPS[6] : [ 'Tehnicko upravljanje i odrzavanje TPI-a','Upravljanje portfeljem TPI-a', 'Pribavljanje i deaktiviranje TPI-a' ],
 }
 
+APLIKACIJE = {
+    MODULI[IPS[0]][0] : [],
+    MODULI[IPS[0]][1] : [],
+    MODULI[IPS[0]][2] : [],
+    MODULI[IPS[0]][3] : [],
+
+    MODULI[IPS[0]][0] : [],
+    MODULI[IPS[0]][1] : [],
+    MODULI[IPS[0]][2] : [],
+    MODULI[IPS[0]][3] : [],
+}
 
 def clean():
     jdata = json.dumps({
