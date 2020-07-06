@@ -1,0 +1,253 @@
+{
+    "IPS": [
+        "Analiza i planiranje poslovanja",
+        "Nabava i ulazna logistika",
+        "Proizvodnja",
+        "Prodaja i izlazna logistika",
+        "Računovodstvo i upravljanje financijama poduzeća",
+        "Upravljanje ljudskim resursima",
+        "Upravljanje trajnom poslovnom imovinom"
+    ],
+    "MODULI": {
+        "Analiza i planiranje poslovanja": [
+            "Strateško Planiranje Poslovanja",
+            "Analitika i planiranje rada zaposlenika",
+            "Operativna analitika poslovanja",
+            "Financijska analitika i planiranje"
+        ],
+        "Nabava i ulazna logistika": [
+            "Priprema nabave i naloga za nabavu",
+            "Suradnja s dobavljacima",
+            "Upravljanje zalihama i skladisnim poslovanjem",
+            "Ulazna logistika"
+        ],
+        "Proizvodnja": [
+            "Upravljanje Proizvodnjom",
+            "Planiranje i priprema proizvodnje",
+            "Upravljanje kvalitetom i razvojem proizvoda"
+        ],
+        "Prodaja i izlazna logistika": [
+            "Upravljanje narudžbama u prodaji",
+            "Upravljanje izlaznom logistikom i transportom",
+            "Modul upravljanja poslijeprodajnim uslugama",
+            "Pružanje strućnih savjeta i usluga",
+            "Poticanje na kupnju i sofisticirani oblici prodaje"
+        ],
+        "Računovodstvo i upravljanje financijama poduzeća": [
+            "Glavna knjiga",
+            "Analiticko knjigovodstvo i ostale poslovne knjige"
+        ],
+        "Upravljanje ljudskim resursima": [
+            "Upravljanje talentima i razvoj ljudskih potencijala",
+            "Upravljanje radnim i poslovnim procesima ljudi"
+        ],
+        "Upravljanje trajnom poslovnom imovinom": [
+            "Tehničko upravljanje i održavanje TPI-a",
+            "Upravljanje portfeljem TPI-a",
+            "Pribavljanje i deaktiviranje TPI-a"
+        ]
+    },
+    "PODMODULI": {
+        "Analiticko knjigovodstvo i ostale poslovne knjige": [
+            "Modul racunovodstvenog pracenja dugotrajne imovine",
+            "Modul racunovodstvenog pracenja zaliha sirovina i materijala",
+            "Modul obracuna placa djelatnika",
+            "Modul racunovodstvenog pracenja proizvodnje i zaliha gotovih proizvoda",
+            "Modul racunovodstvenog pracenja zaliha trgovacke robe"
+        ]
+    },
+    "APLIKACIJE": {
+        "Strateško Planiranje Poslovanja": [
+            "Uskladivanje s pravnom regulativom i standardima struke",
+            "Opce stratesko planiranje",
+            "Stratesko financijsko planiranje",
+            "Planiranje unutarnjih ulaganja (investicija)",
+            "Planiranje vanjskih ulaganja (investicija)"
+        ],
+        "Analitika i planiranje rada zaposlenika": [
+            "Planiranje potreba za zaposljavanjem",
+            "Planiranje troskova rada",
+            "Analitika i mjerenje procesa upravljanja ljudskim resursima",
+            "Analitika za potrebe upravljanja talentima"
+        ],
+        "Operativna analitika poslovanja": [
+            "Analitika nabave",
+            "Analitika zaliha i skladisnog poslovanja",
+            "Analitika proizvodnje",
+            "Analitika transporta",
+            "Analitika prodaje",
+            "Analiitika usluga pruzanih klijentima",
+            "Analitika upravljanja kvalitetom"
+        ],
+        "Financijska analitika i planiranje": [
+            "Financijsko i upravljacko izvjestavanje",
+            "Financijsko planiranje, budzetiranje i predvidanje",
+            "Analitika profitabilnosti",
+            "Analitika troskova proizvoda i usluga",
+            "Analitika ponasanja prilikom placanja"
+        ],
+        "Priprema nabave i naloga za nabavu": [
+            "Analiza potreba u potrosnim dobrima",
+            "Konsolidacija potreba u potrosnim dobrima i planiranje nabave",
+            "Priprema naloga za nabavu potrosnih dobara"
+        ],
+        "Suradnja s dobavljacima": [
+            "Uspostavljanje i razvoj suradnje s dobavljacima",
+            "Organizacija drazbe i prikupljanje ponuda",
+            "Izrada narudzbe za nabavu",
+            "Potvrda narudzbe",
+            "Obrada ulaznih racuna"
+        ],
+        "Upravljanje zalihama i skladisnim poslovanjem": [
+            "Prijam i kontrola ulaza potrosnih dobara",
+            "Pracenje zaliha i upravljanje skladistem",
+            "Izlaz dobara iz skladista"
+        ],
+        "Ulazna logistika": [
+            "Utvrdivanje redoslijeda dostava",
+            "Prihvat isporuka",
+            "Obrada dostavne i transportne dokumentacije"
+        ],
+        "Upravljanje Proizvodnjom": [
+            "Upravljanje zlihama u proizvodnji",
+            "Upravljanje proizvodnim procesima"
+        ],
+        "Planiranje i priprema proizvodnje": [
+            "Izrada glavnog plana proizvodnje",
+            "Signal s trzista",
+            "Kombinacija"
+        ],
+        "Upravljanje kvalitetom i razvojem proizvoda": [
+            "Upravljanje kvalitetom",
+            "Razvoj novih proizvoda"
+        ],
+        "Upravljanje narudžbama u prodaji": [
+            "Upravljanje profilima klijenata",
+            "Organizacija i upravljanje aukcijama",
+            "Obrada upita klijenata",
+            "Podnosenje konkretnih ponuda",
+            "Upravljanje kupoprodajnim ugovorima",
+            "Fakturiranje",
+            "Upravljanje povraton ambalazom"
+        ],
+        "Upravljanje izlaznom logistikom i transportom": [
+            "Upravljanje zalihama i skladistenjem gotovih proizvoda",
+            "Upravljanje isporukom",
+            "Upravljanje transportom"
+        ],
+        "Modul upravljanja poslijeprodajnim uslugama": [
+            "Rjesavanje reklamacije kupaca",
+            "Evidencija intervencija u jamstvenom roku",
+            "Potpora uslugama odrzavanja i popravaka nakon isteka jamstvenog roka",
+            "Potpora uslugama nadogradnje i prosirenja funckionalnosti"
+        ],
+        "Pružanje strućnih savjeta i usluga": [
+            "Strucno savjetovanje",
+            "Obrazovanje i uvjezbavanje korisnika"
+        ],
+        "Poticanje na kupnju i sofisticirani oblici prodaje": [
+            "Planiranje akcija poticanja na kupnju",
+            "Potpora akcijama poticanja na kupnju",
+            "Potpora sofisticiranim oblicima prodaje"
+        ],
+        "Glavna knjiga": [
+            "Obrada knjigovodstvenih isprava poduzeca",
+            "Kontrolni postupci na razini glavne knjige",
+            "izvjestavanje iz glavne knjige"
+        ],
+        "Modul racunovodstvenog pracenja dugotrajne imovine": [
+            "Knjiga inventara",
+            "Analiticko knjigovodstvo dugotrajne imovine",
+            "Kontrola poslovanja s dugotrajnom imovinom",
+            "Izvjestavanje o dugotrajnoj imovini"
+        ],
+        "Modul racunovodstvenog pracenja zaliha sirovina i materijala": [
+            "Evidencija zaliha sirovina i materijala u poslovnim knjigama",
+            "Kontrola materijalnog poslovanja",
+            "Izvjestavanje o materijalnom poslovanju"
+        ],
+        "Modul obracuna placa djelatnika": [
+            "Analiticko knjigovodstvo",
+            "Kontrolni postupci",
+            "Izvjestavanje o troskovima placa"
+        ],
+        "Modul racunovodstvenog pracenja proizvodnje i zaliha gotovih proizvoda": [
+            "Evidencija proizvodnje i zaliha gotovih proizvoda u poslovnim knjigama",
+            "Kontrolni postupci na razini proizvodnje i zaliha gotovih proizvoda",
+            "Izvjestavanje o proizvodnji i gotovim proizvodima"
+        ],
+        "Modul racunovodstvenog pracenja zaliha trgovacke robe": [
+            "Evidencija trgovacke robe u poslovnim knjigama",
+            "Kontrola robnog poslovanja",
+            "Izvjestavanje o robnom poslovanju"
+        ],
+        "Upravljanje talentima i razvoj ljudskih potencijala": [
+            "Upravljanje zaposljavanjem",
+            "Upravljanje karijerom",
+            "Ucenje i uvjezbavanje",
+            "Upravljanje ucinkovitoscu zaposlenika",
+            "Kompenzacijski menadzment"
+        ],
+        "Upravljanje radnim i poslovnim procesima ljudi": [
+            "Maticna evidencija i administracija zaposlenika",
+            "Organizacijsko upravljanje",
+            "Upravljanje radnim vremenom",
+            "Obracun placa i ostalih naknada za rad"
+        ],
+        "Tehničko upravljanje i održavanje TPI-a": [
+            "Planiranje redovitog, povremenog i prigodnog odrzavanja TPI-a",
+            "Planiranje modernizacje TPI-a",
+            "Pracenje postupaka odrzavanja i popravaka TPI-a",
+            "Pracenje i analiza ukupnih troskova TPI-a"
+        ],
+        "Upravljanje portfeljem TPI-a": [
+            "Pracenje i ocjenjivanje vrijednosti TPI-a",
+            "Izvjestavanje o znacajnim obiljezjima TPI-a",
+            "Upravljanje odnosima s dobavljacima TPI-a, suvlasnicima i partnerima",
+            "Graficko prikazivanje portfelja TPI-a"
+        ],
+        "Pribavljanje i deaktiviranje TPI-a": [
+            "Priprema javnog natjecaja za pribavljanje TPI-a",
+            "Provedba javnog natjecaja za pribavljanje TPI-a",
+            "Ugovor s odabranim dobavljacima",
+            "Otpis dijela vrijednosti TPI-a",
+            "Deaktiviranje TPI-a"
+        ]
+    },
+    "OPIS": {
+        "Analiza i planiranje poslovanja": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Nabava i ulazna logistika": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Proizvodnja": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Prodaja i izlazna logistika": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Računovodstvo i upravljanje financijama poduzeća": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Upravljanje ljudskim resursima": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Upravljanje trajnom poslovnom imovinom": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Strateško Planiranje Poslovanja": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Analitika i planiranje rada zaposlenika": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Operativna analitika poslovanja": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Financijska analitika i planiranje": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Priprema nabave i naloga za nabavu": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Suradnja s dobavljacima": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Upravljanje zalihama i skladisnim poslovanjem": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Ulazna logistika": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Upravljanje Proizvodnjom": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Planiranje i priprema proizvodnje": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Upravljanje kvalitetom i razvojem proizvoda": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Upravljanje narudžbama u prodaji": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Upravljanje izlaznom logistikom i transportom": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Modul upravljanja poslijeprodajnim uslugama": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Pružanje strućnih savjeta i usluga": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Poticanje na kupnju i sofisticirani oblici prodaje": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Glavna knjiga": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Modul racunovodstvenog pracenja dugotrajne imovine": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Modul racunovodstvenog pracenja zaliha sirovina i materijala": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Modul obracuna placa djelatnika": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Modul racunovodstvenog pracenja proizvodnje i zaliha gotovih proizvoda": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Modul racunovodstvenog pracenja zaliha trgovacke robe": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Upravljanje talentima i razvoj ljudskih potencijala": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Upravljanje radnim i poslovnim procesima ljudi": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Tehničko upravljanje i održavanje TPI-a": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Upravljanje portfeljem TPI-a": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb ",
+        "Pribavljanje i deaktiviranje TPI-a": "asdk asdk jas asdjklf agnf jbs  jksfnd js nlsbn jklsfg ngjfnlsb aw fahjlb wefhawb fgb aergbl erbag hbaerhg baerlb "
+    }
+}
