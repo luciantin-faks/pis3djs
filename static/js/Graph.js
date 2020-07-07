@@ -12,7 +12,7 @@ import { TextToContainer } from "/static/js/TextToContainer.js"
 
 export class Graph{
 
-    constructor(group,screenWidth,screenHeight){
+    constructor(group,opisElem,screenWidth,screenHeight){
         // this.textData = text; // text list
         this.group = group; // main group
         // this.dataIDfieldName = dataIDfieldName; // TODO
@@ -22,16 +22,18 @@ export class Graph{
         this.offX = 0;
         this.offY = 0;
         this.hasSubGraf = false;
+        this.opisElem = opisElem;
     }
 
     SetContainerStyle(style){ this.style = style; return this;  }// container && path
 
-    Populate(text){   //vraca selekciju svih podgrupa koje imaju element     
+    Populate(data){   //vraca selekciju svih podgrupa koje imaju element     
         // console.log(text);
         //init
         this.Clear();
-        this.textData = text;
+        this.textData = data['data'];
         this.FormatData();
+        this.opisElem.html(data['opis'] + data['data'].toString())
         //
 
 
@@ -75,7 +77,11 @@ export class Graph{
         return this;    
     }
 
-    Clear(){ this.group.selectAll('g').remove(); return this; }
+    Clear(){
+        if(this.hasSubGraf) this.ClearSubGraph();
+        this.opisElem.html('');
+        this.group.selectAll('g').remove();
+        return this; }
 
     // setData(data){ this.data = data; return this;}
 
@@ -84,6 +90,7 @@ export class Graph{
     async PopulateSubGraph(withDataID){
         console.log(withDataID);
         let data = await this.DataSourceFun(withDataID);
+        console.log(data)
         this.subGraph.Populate(data);
     }
 
@@ -187,7 +194,7 @@ function BindGraphClickEvent(graph){
                     .duration(500);  
 
             if(graph.hasSubGraf)graph.ClearSubGraph();
-
+            
             parentG.attr('isClicked',null);
             console.log('vec klikunt isti')
         }

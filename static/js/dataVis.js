@@ -1,11 +1,11 @@
-import { getIPSdata } from '/static/js/dataRequest.js'
+import { getPISdata } from '/static/js/dataRequest.js'
 import { Graph, SplitArc, GraphDataFormat, SplitLineX, SplitLineY } from '/static/js/Graph.js'
 import { responsify } from '/static/js/responsify.js'
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 //                D3  settings & vars               \\
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 
-const CIRCLE_SIZE = [ 100,200,300];
+// const CIRCLE_SIZE = [ 100,200,300];
 
 // let margin = {top: 10, right: 40, bottom: 30, left: 30},
 // width  = 500 - margin.left - margin.right,
@@ -26,6 +26,8 @@ let svg = d3.select('.graf')
     .call(responsify); //da bude responzivan
 
 
+let opisElem = d3.select('.opis');
+    opisElem.html('dasdasasd')
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 //                     MAIN                         \\
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
@@ -34,28 +36,50 @@ main()
 async function main(){
 
     //podaci za prvi red
-    let IPS_data = (await getIPSdata("IPS"))['IPS'];
-    let MODULI_data = (await getIPSdata("MODULI"))['MODULI']['Prodaja i izlazna logistika'];
+    let IPS_data = (await getPISdata("IPS"));
+    // let MODULI_data = (await getIPSdata("MODULI"))['MODULI']['Prodaja i izlazna logistika'];
     //grupe
     let ipsG = svg.append('g')
     let modsG = svg.append('g')
+    let appsG = svg.append('g')
+    let opapG = svg.append('g')
+    let zadsG = svg.append('g')
     //grafovi
     let IPSgraf;
     let MODULIgraf;
-
+    let APLIKACIJEgraf;
+    let OPISappgraf;
+    let Zadnjigraf;
     // console.log(IPS_data)
-  
-    MODULIgraf = (new Graph(modsG,width,height))
+    
+    Zadnjigraf = (new Graph(zadsG,opisElem,width,height))
+        .SetContainerStyle(GraphStyleRectLinY)
+        // .SetXoff(-width/2+750) //nije potrebno
+
+    OPISappgraf = (new Graph(opapG,opisElem,width,height))
+        .SetContainerStyle(GraphStyleRectLinY)
+        .SetXoff(-width/2+750)
+        .SetDataSource(getPISdata)
+        .SetupSubGraph(Zadnjigraf)
+
+    APLIKACIJEgraf = (new Graph(appsG,opisElem,width,height))
+        .SetContainerStyle(GraphStyleRectLinY)
+        .SetXoff(-width/2+550)
+        .SetDataSource(getPISdata)
+        .SetupSubGraph(OPISappgraf)
+
+    MODULIgraf = (new Graph(modsG,opisElem,width,height))
         .SetContainerStyle(GraphStyleRectLinY)
         .SetXoff(-width/2+350)
-        .Populate(MODULI_data);
+        .SetDataSource(getPISdata)
+        .SetupSubGraph(APLIKACIJEgraf)
 
-    IPSgraf = (new Graph(ipsG,width,height))
+    IPSgraf = (new Graph(ipsG,opisElem,width,height))
         .SetContainerStyle(GraphStyleRectLinY)
         .SetXoff(-width/2+150)
-        .SetDataSource(ModuliDataSource)
+        .SetDataSource(getPISdata)
         .SetupSubGraph(MODULIgraf)
-        .Populate(IPS_data); 
+        .Populate({'data':IPS_data['data'],'opis':''}); 
 
     
     // setTimeout(()=>{IPS_list.clear()},1000)
@@ -75,7 +99,7 @@ const GraphStyleRectLinY ={ // C-container , P-path
     Ptype : 'linY',
     Plen : height - height*0.1,
 
-    fontSize : ""
+    fontSize : "1em"
 };
 
 const GraphStyleCircArc ={
@@ -90,8 +114,8 @@ const GraphStyleCircArc ={
 };
 
 
-async function ModuliDataSource(IPSid){
-    let MODULI_data = await getIPSdata("MODULI");
-    console.log(MODULI_data)
-    return MODULI_data['MODULI'][IPSid];
-}
+// async function ModuliDataSource(IPSid){
+//     let MODULI_data = await getIPSdata("MODULI");
+//     console.log(MODULI_data)
+//     return MODULI_data['MODULI'][IPSid];
+// }

@@ -1,7 +1,7 @@
 
 const URL='http://localhost:5000/pis/'
 
-export async function getIPSdata(url_add){
+export async function getPISdata(url_add){
     const resp = await fetch(URL+url_add);
     let json = await resp.json();
      // console.log(json)
