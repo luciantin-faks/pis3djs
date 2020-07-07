@@ -1,17 +1,10 @@
 import { getPISdata } from '/static/js/dataRequest.js'
-import { Graph, SplitArc, GraphDataFormat, SplitLineX, SplitLineY } from '/static/js/Graph.js'
+import { Graph } from '/static/js/Graph.js'
 import { responsify } from '/static/js/responsify.js'
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 //                D3  settings & vars               \\
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 
-// const CIRCLE_SIZE = [ 100,200,300];
-
-// let margin = {top: 10, right: 40, bottom: 30, left: 30},
-// width  = 500 - margin.left - margin.right,
-// height = 500 - margin.top - margin.bottom;
-
-// let width = window.screen.width,height =window.screen.height;
 let width = window.innerWidth/2,
 height = window.innerHeight;
 
@@ -37,7 +30,6 @@ async function main(){
 
     //podaci za prvi red
     let IPS_data = (await getPISdata("IPS"));
-    // let MODULI_data = (await getIPSdata("MODULI"))['MODULI']['Prodaja i izlazna logistika'];
     //grupe
     let ipsG = svg.append('g')
     let modsG = svg.append('g')
@@ -50,11 +42,10 @@ async function main(){
     let APLIKACIJEgraf;
     let OPISappgraf;
     let Zadnjigraf;
-    // console.log(IPS_data)
-    
+
+    ////////////////////////////////////////////
     Zadnjigraf = (new Graph(zadsG,opisElem,width,height))
         .SetContainerStyle(GraphStyleRectLinY)
-        // .SetXoff(-width/2+750) //nije potrebno
 
     OPISappgraf = (new Graph(opapG,opisElem,width,height))
         .SetContainerStyle(GraphStyleRectLinY)
@@ -80,9 +71,7 @@ async function main(){
         .SetDataSource(getPISdata)
         .SetupSubGraph(MODULIgraf)
         .Populate({'data':IPS_data['data'],'opis':''}); 
-
-    
-    // setTimeout(()=>{IPS_list.clear()},1000)
+   
 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
@@ -113,9 +102,3 @@ const GraphStyleCircArc ={
     fontSize : "1em"
 };
 
-
-// async function ModuliDataSource(IPSid){
-//     let MODULI_data = await getIPSdata("MODULI");
-//     console.log(MODULI_data)
-//     return MODULI_data['MODULI'][IPSid];
-// }

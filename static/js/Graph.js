@@ -3,12 +3,6 @@ import { TextToContainer } from "/static/js/TextToContainer.js"
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
 //                IPS Graf                          \\
 //++++++++++++++++++++++++++++++++++++++++++++++++++\\
-/*
-    new Graph(group,w,h)
-        .setContainerStyle(style)
-        .populate(TextArray);
-
-*/
 
 export class Graph{
 
@@ -33,8 +27,8 @@ export class Graph{
         this.Clear();
         this.textData = data['data'];
         this.FormatData();
-        this.opisElem.html(data['opis'] + data['data'].toString())
-        //
+        this.opisElem.html(data['opis']) 
+        //+ data['data'].toString())
 
 
         let selection = this.group.selectAll().data(this.data);
@@ -88,9 +82,9 @@ export class Graph{
     SetupSubGraph(sub){this.hasSubGraf=true; this.subGraph = sub;  return this; }
 
     async PopulateSubGraph(withDataID){
-        console.log(withDataID);
+        // console.log(withDataID);
         let data = await this.DataSourceFun(withDataID);
-        console.log(data)
+        // console.log(data)
         this.subGraph.Populate(data);
     }
 
@@ -159,7 +153,6 @@ export function SplitArc(n,radius){
 }
 
 
-
 export function SplitLineX(n,len){
     let arr = Array.from(Array(n).keys());
     const step = len/n;
@@ -168,7 +161,7 @@ export function SplitLineX(n,len){
     return arr;
 }
 
-//koristi se i visina,
+//koristi se i visina, ne
 export function SplitLineY(n,len){
     let arr = Array.from(Array(n).keys());
     const step = len/n;
@@ -196,7 +189,7 @@ function BindGraphClickEvent(graph){
             if(graph.hasSubGraf)graph.ClearSubGraph();
             
             parentG.attr('isClicked',null);
-            console.log('vec klikunt isti')
+            // console.log('vec klikunt isti')
         }
         else if(isClicked && LastNodeClickedID != data['data'] ){ //ako ClickID nije jednak a kliknulo se
                 parentG.selectAll('g')
@@ -207,25 +200,25 @@ function BindGraphClickEvent(graph){
                 parentG.selectAll('g').filter(d=>d!=data)
                     .transition()
                         // .attr("transform",`translate(${data['coord'][0]},${data['coord'][1]})scale(0)`)
-                        .style("opacity", 0.3)
+                        .style("opacity", 0.1)
                         .duration(500);  
 
             if(graph.hasSubGraf)graph.PopulateSubGraph(data['data']);
 
             parentG.attr('isClicked','');
-            console.log('vec klikunt novi')
+            // console.log('vec klikunt novi')
         }
         else if(!isClicked){
             parentG.selectAll('g')
                 .transition().filter(d=>d!=data)
                     // .attr("transform",d=> `translate(${d['coord'][0]},${d['coord'][1]})scale(1)`)
-                    .style("opacity", 0.3)
+                    .style("opacity", 0.1)
                     .duration(500);  
 
             if(graph.hasSubGraf)graph.PopulateSubGraph(data['data']);
 
             parentG.attr('isClicked','');
-            console.log('klikunt')
+            // console.log('klikunt')
         }
         parentG.attr('NodeClickedID',data['data']);
     }    
