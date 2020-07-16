@@ -1,6 +1,3 @@
-// https://stackoverflow.com/questions/48429014/d3-text-wrap-with-text-anchor-middle
-
-
 
 //vraca funkciju koja ne uzima argumente ali ima assignan lineWidth i lineHeight
 export function TextToContainer(lineWidth,lineHeight) {

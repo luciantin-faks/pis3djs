@@ -6,7 +6,7 @@ import { TextToContainer } from "/static/js/TextToContainer.js"
 
 export class Graph{
 
-    constructor(group,opisElem,screenWidth,screenHeight){
+    constructor(group,opisElem,opisHeaderElem,screenWidth,screenHeight){
         // this.textData = text; // text list
         this.group = group; // main group
         // this.dataIDfieldName = dataIDfieldName; // TODO
@@ -17,11 +17,12 @@ export class Graph{
         this.offY = 0;
         this.hasSubGraf = false;
         this.opisElem = opisElem;
+        this.opisHeaderElem = opisHeaderElem;
     }
 
     SetContainerStyle(style){ this.style = style; return this;  }// container && path
 
-    Populate(data){   //vraca selekciju svih podgrupa koje imaju element     
+    Populate(data){   //vraca selekciju svih podgrupa koje imaju element   NE   
         // console.log(text);
         //init
         this.Clear();
@@ -65,7 +66,7 @@ export class Graph{
             .attr("font-family", "sans-serif")
             .style("font-size", this.style.fontSize)
             .text(d=>d['data'])
-            .each(TextToContainer(this.style.Cwidth-5,1));   
+            .each(TextToContainer(this.style.Cwidth-5,1.4));   
     
         this.TranslateGraphH();
         return this;    
@@ -84,6 +85,7 @@ export class Graph{
     async PopulateSubGraph(withDataID){
         // console.log(withDataID);
         let data = await this.DataSourceFun(withDataID);
+        this.opisHeaderElem.html(withDataID)
         // console.log(data)
         this.subGraph.Populate(data);
     }
@@ -107,13 +109,25 @@ export class Graph{
         return this;
     }
 
+    SetInitTranslateOffsetX(fromPosX){ this.fromPosX = fromPosX; return this;}
     //TODO
-    TranslateGraphH(){  this.CenterGroup(this.offX,-this.GetGroupBBox()['height']/2  + this.offY) }
+    SetInitTranslateOffsetY(fromPosY){ this.fromPosY = fromPosY; return this;} 
     
-    CenterGroup(offX=0,offY=0){
+    TranslateGraphH(){  
+        if(this.fromPosX == 'topL')      this.CenterGroupTopLeft(this.offX,-this.GetGroupBBox()['height']/2  + this.offY)
+        if(this.fromPosX == 'center')    this.CenterGroupCenter(this.offX,-this.GetGroupBBox()['height']/2  + this.offY) //
+    }
+    
+    CenterGroupCenter(offX=0,offY=0){
         this.TranslateGroup(
             this.screenWidth/2   + offX,
             this.screenHeight/2  + offY
+    )}
+
+    CenterGroupTopLeft(offX=0,offY=0){
+        this.TranslateGroup(
+            0   + offX,
+            this.screenHeight/2 + offY
     )}
 
     GetGroupBBox(){ return this.group.node().getBBox(); }
@@ -161,7 +175,6 @@ export function SplitLineX(n,len){
     return arr;
 }
 
-//koristi se i visina, ne
 export function SplitLineY(n,len){
     let arr = Array.from(Array(n).keys());
     const step = len/n;
@@ -187,7 +200,8 @@ function BindGraphClickEvent(graph){
                     .duration(500);  
 
             if(graph.hasSubGraf)graph.ClearSubGraph();
-            
+            graph.opisHeaderElem.html('')
+
             parentG.attr('isClicked',null);
             // console.log('vec klikunt isti')
         }

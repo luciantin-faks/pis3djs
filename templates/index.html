@@ -17,15 +17,44 @@
                 box-sizing: border-box;
             } 
             .graf {
+                background-color: rgb(183, 241, 255);
                 flex-grow: 1;
                 width: 50%;
                 height: 99%; 
             }
             .content {
+                border-style: outset;
+                border-width: 3px;
+                border-color: dimgray;
+                /* border-style: outset; */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                /* align-self: center; */
                 flex-grow: 1;
                 width: 50%;
                 height: 99%; 
+                height: 99vh;
             }
+
+            .content-header{
+                text-align: center;
+                flex-grow: 1;
+                font-size: 2em;
+                padding-top: 10%;
+                padding-left: 20%;
+                padding-right: 10%;
+            }
+
+            .content-text{
+                text-align: justify;
+                flex-grow: 3;
+                font-size: 1.5em;
+                padding-top: 20%;
+                padding-left: 20%;
+                padding-right: 10%;
+            }
+
             #view{
                 display: flex;
                 flex-direction: row;
@@ -36,13 +65,14 @@
         <div id="view">
             <div class="graf"></div>
             <div class="content">
-                <p style="font-size: 50px;" class="opis">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam quis placeat amet unde accusamus, sit vitae. Obcaecati quasi praesentium inventore nobis debitis? Quos accusamus voluptatum sint molestias laboriosam impedit nesciunt.</p>
+                <p class="content-header"> </p>
+                <p class="content-text" ></p>
             </div>
         </div>
         <!-- <button id="butt_rand"></button> -->
         <script src="/static/js/dataRequest.js"  type="module"></script>
         <script src="/static/js/responsify.js"  type="module"></script>
-        <script src="/static/js/SVGforeign.js"  type="module"></script>
+        <!-- <script src="/static/js/SVGforeign.js"  type="module"></script> -->
         <script src="/static/js/TextToContainer.js"  type="module"></script>
         <script src="/static/js/Graph.js"  type="module"></script>
         <script src="/static/js/dataVis.js" type="module"></script>

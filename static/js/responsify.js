@@ -8,7 +8,7 @@ export function responsify(svg) {
     svg.attr("viewBox", "0 0 " + width + " " + height)
         .attr("perserveAspectRatio", "xMinYMid")
         .call(resize);
-    d3.select(window).on("resize." + container.attr("id"), resize);
+    d3.select(window).on("resize", resize);
     function resize() {
         var targetWidth = parseInt(container.style("width"));
         svg.attr("width", targetWidth);
